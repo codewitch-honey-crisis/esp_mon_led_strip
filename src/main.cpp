@@ -5,9 +5,9 @@
 #include "interface.hpp"
 using rgbw32 = gfx::rgbw_pixel<32>;
 using hsl24 = gfx::hsl_pixel<24>;
+using hsva32 = gfx::hsva_pixel<32>;
 using colorw32 = gfx::color<rgbw32>;
 
-//#define COLOR_TEXT_ONLY
 #define LED_PIN 18
 #define LED_HRES 8
 #define LED_VRES 32
@@ -66,8 +66,8 @@ void loop() {
             uint8_t pt = *points.peek(i);
             float v = (((float)pt)/100.0f);
             uint16_t y = v*(LED_HEIGHT-1);
-            hsva_pixel<32> px = color<hsva_pixel<32>>::red;
-            hsva_pixel<32> px2 = color<hsva_pixel<32>>::green;
+            hsva32 px = color<hsva32>::red;
+            hsva32 px2 = color<hsva32>::green;
             auto h1 = px.channel<channel_name::H>();
             auto h2 = px2.channel<channel_name::H>();
             // adjust so we don't overshoot
