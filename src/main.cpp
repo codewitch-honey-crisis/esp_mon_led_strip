@@ -8,6 +8,8 @@ using hsl24 = gfx::hsl_pixel<24>;
 using hsva32 = gfx::hsva_pixel<32>;
 using colorw32 = gfx::color<rgbw32>;
 
+// the type of neopixes. can be ws2812, sk6812 or apa106
+#define LED_TYPE ws2812
 // The data pin for neopixel display
 #define LED_PIN 18
 // the physical horizontal resolution of the display
@@ -29,7 +31,8 @@ using colorw32 = gfx::color<rgbw32>;
 
 using namespace gfx;
 using namespace arduino;
-ws2812 leds(LED_PIN,LED_COUNT);
+
+LED_TYPE leds(LED_PIN,LED_COUNT);
 
 neopixel_panel panel(leds,LED_HRES,LED_SWAP_XY,LED_SNAKE_LAYOUT);
 using buffer_t = data::circular_buffer<uint8_t,LED_WIDTH>;
