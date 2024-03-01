@@ -56,8 +56,21 @@ void loop() {
         size_t x = LED_WIDTH-points.size();
         for(int i = 0;i<points.size();++i) {
             uint8_t pt = *points.peek(i);
-            uint16_t y = (((double)pt)/100.0f)*(LED_HEIGHT-1);
-            draw::line(panel,rect16(x,LED_HEIGHT-1,x,LED_HEIGHT-(y)-1),rgbw32(0,128*(pt==0),128*(pt!=0),0));
+            float v = (((float)pt)/100.0f);
+            uint16_t y = v*(LED_HEIGHT-1);
+            hsva_pixel<32> px = color<hsva_pixel<32>>::red;
+            hsva_pixel<32> px2 = color<hsva_pixel<32>>::green;
+            auto h1 = px.channel<channel_name::H>();
+            auto h2 = px2.channel<channel_name::H>();
+            // adjust so we don't overshoot
+            h2 -= 40;
+            // the actual range we're drawing
+            auto range = abs(h2 - h1) + 1;
+            for(int yy = 0;yy<=pt;++yy) {
+                float f = ((float)yy/100.0f);
+                px.channel<channel_name::H>(h1 + (range - (f * range)));
+                draw::point(panel,point16(x,LED_HEIGHT-f*(LED_HEIGHT-1)-1),px);
+            }
             ++x;
         }
         panel.resume();
