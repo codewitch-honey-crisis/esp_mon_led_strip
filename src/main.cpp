@@ -8,10 +8,15 @@ using hsl24 = gfx::hsl_pixel<24>;
 using hsva32 = gfx::hsva_pixel<32>;
 using colorw32 = gfx::color<rgbw32>;
 
+// The data pin for neopixel display
 #define LED_PIN 18
+// the physical horizontal resolution of the display
 #define LED_HRES 8
+// the physical vertical resolution of the display
 #define LED_VRES 32
+// 1 = swap x and y coordinates. width becomes height and vice versa
 #define LED_SWAP_XY 1
+// 1 = the LEDS are laid out in a single strip in series such that every other row's columns are inverted
 #define LED_SNAKE_LAYOUT 1
 #if LED_SWAP_XY
 #define LED_WIDTH LED_VRES
