@@ -35,9 +35,18 @@ void setup() {
     panel.initialize();
 }
 void loop() {
+    static uint32_t ts = millis();
     bool draw=false;
+    if(millis()>ts+1000) {
+        ts = millis();
+        points.clear();
+        panel.suspend();
+        panel.clear(panel.bounds());
+        panel.resume();
+    }
     int cmd = Serial.read();
     if(cmd==1) {
+        ts = millis();
         read_status status;
         if(sizeof(status)==Serial.read((uint8_t*)&status,sizeof(status))) {
             if(points.full()) {
