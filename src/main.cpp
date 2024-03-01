@@ -1,12 +1,4 @@
-#include <Arduino.h>
-#include <rmt_led_strip.hpp>
-#include <gfx.hpp>
-#include "neopixel_panel.hpp"
-#include "interface.hpp"
-using rgbw32 = gfx::rgbw_pixel<32>;
-using hsl24 = gfx::hsl_pixel<24>;
-using hsva32 = gfx::hsva_pixel<32>;
-using colorw32 = gfx::color<rgbw32>;
+// BEGIN CONFIG ///////
 
 // the type of neopixes. can be ws2812, sk6812 or apa106
 #define LED_TYPE ws2812
@@ -20,6 +12,19 @@ using colorw32 = gfx::color<rgbw32>;
 #define LED_SWAP_XY 1
 // 1 = the LEDS are laid out in a single strip in series such that every other row's columns are inverted
 #define LED_SNAKE_LAYOUT 1
+
+// END CONFIG ///////
+
+#include <Arduino.h>
+#include <rmt_led_strip.hpp>
+#include <gfx.hpp>
+#include "neopixel_panel.hpp"
+#include "interface.hpp"
+using rgbw32 = gfx::rgbw_pixel<32>;
+using hsl24 = gfx::hsl_pixel<24>;
+using hsva32 = gfx::hsva_pixel<32>;
+using colorw32 = gfx::color<rgbw32>;
+
 #if LED_SWAP_XY
 #define LED_WIDTH LED_VRES
 #define LED_HEIGHT LED_HRES
