@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <rmt_led_strip.hpp>
 #include <gfx.hpp>
-#include "Bm437_Acer_VGA_8x8.h"
 #include "neopixel_panel.hpp"
 #include "interface.hpp"
 using rgbw32 = gfx::rgbw_pixel<32>;
